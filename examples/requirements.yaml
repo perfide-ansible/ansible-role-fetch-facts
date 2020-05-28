@@ -1,0 +1,7 @@
+---
+
+- name: perfide.fetch-facts
+  src: git@github.com:perfide-ansible/ansible-role-fetch-facts.git
+  version: v1.0.0
+
+...
