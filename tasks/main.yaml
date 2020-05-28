@@ -1,0 +1,19 @@
+---
+
+- name: Get cwd
+  set_facts:
+    fetch_facts_cwd: "{{ lookup('env', 'PWD') }}"
+
+- name: Create sub-dir
+  file:
+    path: "{{ playbook_dir }}/fetched_facts/"
+    state: directory
+    mode: '0700'
+
+- name: Save facts
+  copy:
+    content: "{{ hostvars[inventory_hostname]['ansible_facts'] | clean_facts | to_nice_yaml }}"
+    dest: "{{ fetch_facts_cwd }}/fetched_facts/{{ inventory_hostname_short }}.yaml"
+    mode: '0600'
+
+...
